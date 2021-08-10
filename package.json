@@ -1,0 +1,11 @@
+{
+  "name": "driving_school",
+  "version": "1.0.0",
+  "description": "这是一个驾校模拟演变模拟器，模拟一个学员从报考到拿到驾照的整个过程。 玩家扮演驾校的角色，目的是获取更多的钱并且保证学员的整体通过率",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
