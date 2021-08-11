@@ -1,5 +1,5 @@
 import {Person, IPersonOption} from "./spirit";
-// 教练的类
+// 教练的类 
 
 interface ICoachOption {
     studentList: Array<object>,
