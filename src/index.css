@@ -10,5 +10,15 @@ body, html {
 #root {
     width: 800px;
     height: 400px;
+    border: 1px solid black;
+    margin:0 auto;
+    margin-top: 100px;
+    box-sizing: border-box;
+}
+
+#editor {
+    width: 800px;
+    height: 200px;
     background-color: pink;
+    margin: 0 auto;
 }

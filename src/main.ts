@@ -1,22 +1,31 @@
-import { createStudent } from './base/student';
+// import { createStudent } from './base/student';
 import Game from '@/game/index';
+import Editor from '@/editor/editor';
 import './index.css'
 
+// 一个格子占多数像素
+const DENSITY = 40;
+
 const game = new Game({
-    el: document.getElementById('root') as HTMLElement,
+    layout: document.getElementById('root') as HTMLElement,
+    DENSITY,
 });
-console.log(game, 1)
 game.init();
 
-const student = createStudent({
-    name: '小杨',
-    identityId: 140624199704290030,
-    age: 24,
-    sex: 1,
-    character: ['阴险小人'],
-    mood: '高昂',
-    balance: 1000000,
-    coach: {},
-})
+const editor = new Editor({
+    layout: document.getElementById('editor') as HTMLElement,
+    game,
+});
 
-console.log(student)
+// const student = createStudent({
+//     name: '小杨',
+//     identityId: 140624199704290030,
+//     age: 24,
+//     sex: 1,
+//     character: ['阴险小人'],
+//     mood: '高昂',
+//     balance: 1000000,
+//     coach: {},
+// })
+
+// console.log(student)
