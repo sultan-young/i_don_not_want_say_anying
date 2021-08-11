@@ -18,6 +18,13 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
+            },
+            {
+                test: [/\.png/],
+                loader: require.resolve('url-loader'),
+                options: {
+                    limit: 10000,
+                },
             }
         ]
     },
@@ -31,7 +38,8 @@ module.exports = {
     },
     devServer: {
         port: 3000,
-        contentBase:path.join(__dirname,'.'),
+        // 静态资源没参加打包时候，通过这个配置告诉server静态资源位置
+        // contentBase: path.join(__dirname,'./src/assests'),
         open: false,
     },
     plugins: [
@@ -39,5 +47,6 @@ module.exports = {
             template: path.resolve(__dirname, './src/index.html'),
             filename: 'index.html'
         }),
+        
     ]
 }

@@ -1,5 +1,5 @@
 import DrawPen from '@/draw/draw-pen';
-
+import img from '@/assests/town_tree/tileset.png'
 interface IEditor {
     game: any,
     layout: HTMLElement,
@@ -45,15 +45,15 @@ class Editor {
 
         // 模拟画点
         // this.drawpen.drawRectByPoint([x * 40, y * 40], 40);
-
-
-        const img = new Image();
-        img.src = '../assest/town_tree/tileset.png';
-        img.onload = ()=> {
-            // 模拟画图
-            this.drawpen.drawMaterialByPoint([x * 40, y * 40], 40)
-            console.log(img.width )
-        }
+        // const img = require('../assests/town_tree/tileset.png')
+        console.log(img)
+        // const img = new Image();
+        // img.src = '../../assets/town_tree';
+        // img.onload = ()=> {
+        //     // 模拟画图
+        //     this.drawpen.drawMaterialByPoint([x * 40, y * 40], 40)
+        //     console.log(img.width )
+        // }
         
     }
     // 标线开关
