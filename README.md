@@ -15,10 +15,25 @@
 
 
 
+## 文件目录指示
++ base 人物，建筑的model
++ game 游戏系统
++ time 事件控制系统
++ 
+
+
+
 Person {
     name,
     identityId,
-    age,
+    age,Markdown All in One
     sex,
     character, // 性格，影响考场上的发挥
 }
+
+
+// 报错记录
+> main.js:2 Uncaught ReferenceError: exports is not defined
+> 原因：ts使用的是commonjs，原生浏览器是不支持commonjs的。 commonjs一般被使用在nodejs里。
+> 解决办法：使用webpack的babel
+  
