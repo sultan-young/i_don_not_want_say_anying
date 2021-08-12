@@ -1,5 +1,6 @@
 body, html {
     height: 100%;
+    /* background-image: url('./asset/town_tree/preview.png'); */
 }
 
 * {
@@ -19,6 +20,6 @@ body, html {
 #editor {
     width: 800px;
     height: 200px;
-    background-color: pink;
+    background-color: #ccc;
     margin: 0 auto;
 }

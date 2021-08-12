@@ -1,10 +1,10 @@
 // import { createStudent } from './base/student';
 import Game from '@/game/index';
-import Editor from '@/editor/editor';
+import Editor from './editor/editor';
 import './index.css'
 
 // 一个格子占多数像素
-const DENSITY = 40;
+const DENSITY = 20;
 
 const game = new Game({
     layout: document.getElementById('root') as HTMLElement,

@@ -1,5 +1,7 @@
 import DrawPen from '@/draw/draw-pen';
-import img from '@/assests/town_tree/tileset.png'
+import { TOWN_MATERIAL, ITownMaterial } from '../asset/town_tree/tileset'
+import { v4 as uuidv4 } from 'uuid';
+
 interface IEditor {
     game: any,
     layout: HTMLElement,
@@ -8,12 +10,16 @@ interface IEditor {
 interface IEditorOption {
     isOpenGridLine: boolean,
 }
+interface ITownMaterialDom extends ITownMaterial {
+    el: HTMLElement,
+}
 
 class Editor {
     protected game;
     protected layout;
     protected editorOption: IEditorOption;
     protected drawpen;
+    protected currentSelectMateral: ITownMaterialDom | undefined;
     constructor(option: IEditor) {
         this.game = option.game;
         this.layout = option.layout;
@@ -26,6 +32,7 @@ class Editor {
     }
     init() {
         this.gridLineHandler()
+        this.initEditorMater();
         this.initBindEvent();
         // this.initByEditorOption();
     }
@@ -37,7 +44,7 @@ class Editor {
         
     }
     // 编辑器点击事件
-    bindEditorMouseClick(event: MouseEvent) {
+    async bindEditorMouseClick(event: MouseEvent) {
         const { offsetX, offsetY } = event;
         const { width, height } = this.game.el;
         const x = Math.floor(offsetX / this.game.DENSITY);
@@ -45,15 +52,16 @@ class Editor {
 
         // 模拟画点
         // this.drawpen.drawRectByPoint([x * 40, y * 40], 40);
-        // const img = require('../assests/town_tree/tileset.png')
-        console.log(img)
-        // const img = new Image();
-        // img.src = '../../assets/town_tree';
-        // img.onload = ()=> {
-        //     // 模拟画图
-        //     this.drawpen.drawMaterialByPoint([x * 40, y * 40], 40)
-        //     console.log(img.width )
-        // }
+
+        const path = require('@/asset/town_tree/tileset.png')
+        const img = new Image();
+        img.src = path;
+
+        img.onload = ()=> {
+            // 模拟画图
+            this.drawpen.drawMaterialByPoint(img, this.currentSelectMateral, [x * this.game.DENSITY, y * this.game.DENSITY])
+
+        }
         
     }
     // 标线开关
@@ -97,6 +105,36 @@ class Editor {
     initGrid() {
         
     }
+    initEditorMater() {
+        const parentDom = document.createElement('div');
+        parentDom.style.display = 'flex';
+        parentDom.style.flexWrap = 'warp';
+        parentDom.addEventListener('click', (e)=> {
+            const targetDom: any = e.target;
+            const index = targetDom && targetDom.getAttribute('_index')
+            this.currentSelectMateral = {
+                ...TOWN_MATERIAL[index],
+                el: targetDom,
+            }
+        })
+        const path = require('../asset/town_tree/tileset.png');
+
+        TOWN_MATERIAL.forEach((material: ITownMaterial, index: number) => {
+            const imgDom = document.createElement('div');
+            imgDom.style.background = `url(${path})  ${-material.translate[0]}px ${-material.translate[1]}px`
+            imgDom.style.width = `${material.sourceSize[0]}px`;
+            imgDom.style.height = `${material.sourceSize[1]}px`;
+            imgDom.style.marginLeft = '20px'
+            imgDom.setAttribute('_index', `${index}`);
+            parentDom.appendChild(imgDom)
+        })
+        console.log(parentDom)
+        this.layout.appendChild(parentDom)
+        console.log(TOWN_MATERIAL)
+    }
 }
 
+function loadSketchLib(path: any): Promise<any> {
+    return Promise.resolve(require(`${path}`))
+}
 export default Editor;
