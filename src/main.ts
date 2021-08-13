@@ -1,5 +1,5 @@
 // import { createStudent } from './base/student';
-import Game from '@/game/index';
+import Game from '@/game/game';
 import Editor from './editor/editor';
 import './index.css'
 

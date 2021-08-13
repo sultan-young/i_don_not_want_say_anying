@@ -1,6 +1,6 @@
 import DrawPen from '@/draw/draw-pen';
 import { TOWN_MATERIAL, ITownMaterial } from '../asset/town_tree/tileset'
-import { v4 as uuidv4 } from 'uuid';
+import { Barrier } from '../spirit/barrier';
 
 interface IEditor {
     game: any,
@@ -59,8 +59,8 @@ class Editor {
 
         img.onload = ()=> {
             // 模拟画图
-            this.drawpen.drawMaterialByPoint(img, this.currentSelectMateral, [x * this.game.DENSITY, y * this.game.DENSITY])
-
+            // const barrier = new Barrier();
+            // this.drawpen.drawMaterialByPoint(img, this.currentSelectMateral, [x * this.game.DENSITY, y * this.game.DENSITY])
         }
         
     }
@@ -108,7 +108,8 @@ class Editor {
     initEditorMater() {
         const parentDom = document.createElement('div');
         parentDom.style.display = 'flex';
-        parentDom.style.flexWrap = 'warp';
+        parentDom.style.flexWrap = 'wrap';
+        parentDom.style.alignItems = 'center';
         parentDom.addEventListener('click', (e)=> {
             const targetDom: any = e.target;
             const index = targetDom && targetDom.getAttribute('_index')
@@ -121,7 +122,7 @@ class Editor {
 
         TOWN_MATERIAL.forEach((material: ITownMaterial, index: number) => {
             const imgDom = document.createElement('div');
-            imgDom.style.background = `url(${path})  ${-material.translate[0]}px ${-material.translate[1]}px`
+            imgDom.style.background = `url(${path})  ${-material.translate[0]}px ${-material.translate[1]}px no-repeat`
             imgDom.style.width = `${material.sourceSize[0]}px`;
             imgDom.style.height = `${material.sourceSize[1]}px`;
             imgDom.style.marginLeft = '20px'

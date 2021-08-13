@@ -1,4 +1,4 @@
-import {Person, IPersonOption} from "./spirit";
+import { Spirit, ISpiritOption} from "./spirit";
 // 教练的类 
 
 interface ICoachOption {
@@ -6,10 +6,10 @@ interface ICoachOption {
     
 }
 
-class Coach extends Person {
+class Coach extends Spirit {
     protected studentList;
 
-    constructor(personOption: IPersonOption, coachOption: ICoachOption ) {
+    constructor(personOption: ISpiritOption, coachOption: ICoachOption ) {
         super(personOption);
         this.studentList = coachOption.studentList;
 

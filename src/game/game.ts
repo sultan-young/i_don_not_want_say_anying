@@ -6,16 +6,20 @@ interface IGameOption {
 
 
 class Game {
-    protected layout;
-    public ctx: CanvasRenderingContext2D | null;
-    public el: any;
-    public DENSITY;
+    protected layout; // game初始化的父容器
+    public ctx: CanvasRenderingContext2D | null; // 2d画笔
+    public el: any; // game初始化后的实例
+    public DENSITY; // 一个基格占多少像素
+    public spiritList: Set<object>; // 当前game spirit列表
+    public resourceMap: Map<string, HTMLElement>; // 当前game用到的资源
+
     constructor(gameOption: IGameOption) {
         this.layout = gameOption.layout;
         this.DENSITY = gameOption.DENSITY;
         this.el = null;
         this.ctx = null;
-        // 
+        this.spiritList = new Set();   
+        this.resourceMap = new Map();
     }
     init() {
         this.initScene();
@@ -34,6 +38,10 @@ class Game {
         this.el.addEventListener('click', (e: Event)=> {
             
         })
+    }
+    // 追加一个spirit
+    appendSpirit() {
+
     }
 }
 
