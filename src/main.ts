@@ -4,7 +4,7 @@ import Editor from './editor/editor';
 import './index.css'
 
 // 一个格子占多数像素
-const DENSITY = 20;
+const DENSITY = 16;
 
 const game = new Game({
     layout: document.getElementById('root') as HTMLElement,

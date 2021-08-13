@@ -2,9 +2,6 @@ interface IGameOption {
     layout: HTMLElement,
     DENSITY: number,
 }
-
-
-
 class Game {
     protected layout; // game初始化的父容器
     public ctx: CanvasRenderingContext2D | null; // 2d画笔
@@ -12,6 +9,7 @@ class Game {
     public DENSITY; // 一个基格占多少像素
     public spiritList: Set<object>; // 当前game spirit列表
     public resourceMap: Map<string, HTMLElement>; // 当前game用到的资源
+    protected clickEventList: Array<Function>;
 
     constructor(gameOption: IGameOption) {
         this.layout = gameOption.layout;
@@ -20,6 +18,7 @@ class Game {
         this.ctx = null;
         this.spiritList = new Set();   
         this.resourceMap = new Map();
+        this.clickEventList = [];
     }
     init() {
         this.initScene();
@@ -36,11 +35,21 @@ class Game {
     }
     bindMouseClick() {
         this.el.addEventListener('click', (e: Event)=> {
-            
+            this.clickEventList.forEach(handle=> {
+                handle(e);
+            })
         })
     }
     // 追加一个spirit
     appendSpirit() {
+
+    }
+    subscribeEvent(eventName: string, cb: Function) {
+        if(eventName === 'click') {
+            this.clickEventList.push(cb)
+        }
+    }
+    drawSprite(img: HTMLElement, ) {
 
     }
 }

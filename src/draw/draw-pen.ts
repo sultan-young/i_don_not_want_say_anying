@@ -10,7 +10,6 @@ class DrawPen {
     }
     drawMaterialByPoint(img: any, model: any, point: Array<number>) {
         const { el, sourceSize, translate, type} = model;
-        console.log(model)
         this.ctx.drawImage(img, translate[0], translate[1], sourceSize[0], sourceSize[1], point[0], point[1], sourceSize[0], sourceSize[1])
     }
 }
